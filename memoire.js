@@ -15,24 +15,7 @@ function clickBtn(boutton, delai){
 }
 var carreaux = Array.from(document.getElementsByClassName("carreau"));
 var btnDepart = document.getElementById("depart");
-
-carreaux.forEach((carreau)=>{
-    carreau.addEventListener("click", (e)=>{
-        console.log(e.target);
-        clickBtn(e.target, 1000);
-    });
-});
-btnDepart.addEventListener("click", ()=>{
-    //for(let i = 0; i<carreaux.length; i++){
-    //    setTimeout(() => clickBtn(carreaux[i],1000), i * 1000);
-    //}
-    var indexes = tableauHasard(10, num);
-    for(let i = 0; i < indexes.length; i++){
-        console.log("boi "+i);
-        setTimeout(() => clickBtn(carreaux[indexes[i]], 1000), i * 1000);
-    }
-});
-
+//
 //-----ALGORITHMES DE HASARD-----\\
 //maximum exclusif & minimum inclusif
 var nbrHasard = (min, max) => Math.floor(Math.random() * (max - min) + min);
@@ -43,3 +26,31 @@ function tableauHasard(longueur, grandeur){
     }
     return tableau;
 }
+var jouer = false;
+var niveau = 0;
+var val = -1;
+var position = 0;
+var indexes = [];
+//-----ÉCOUTEURS D'ÉVÉNEMENTS-----\\
+carreaux.forEach((carreau)=>{
+    carreau.addEventListener("click", (e)=>{
+        val = carreaux.indexOf(e.target);
+        clickBtn(e.target, 1000);
+        if(val != indexes[position]){
+            alert("BOOO");
+        }else{
+            position++;
+        }
+    });
+});
+btnDepart.addEventListener("click", ()=>{
+    btnDepart.disabled = true;
+    //for(let i = 0; i<carreaux.length; i++){
+    //    setTimeout(() => clickBtn(carreaux[i],1000), i * 1000);
+    //}
+    indexes = tableauHasard(3, num);
+    for(let i = 0; i < indexes.length; i++){
+        setTimeout(() => clickBtn(carreaux[indexes[i]], 1000), i * 1000);
+    }
+
+});
