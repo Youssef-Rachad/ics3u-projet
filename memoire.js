@@ -57,7 +57,6 @@ carreaux.forEach((carreau)=>{
 });
 btnDepart.addEventListener("click", ()=>{
     btnDepart.disabled = true;
-    jouer=true;
     //for(let i = 0; i<carreaux.length; i++){
     //    setTimeout(() => clickBtn(carreaux[i],1000), i * 1000);
     //}
@@ -65,5 +64,6 @@ btnDepart.addEventListener("click", ()=>{
     for(let i = 0; i < indexes.length; i++){
         setTimeout(() => clickBtn(carreaux[indexes[i]], 1000), i * 1000);
     }
+    setTimeout(() => jouer = true, indexes.length * 1000);
 
 });
