@@ -19,8 +19,16 @@
     display:inline-block;
     margin:0 auto 0 auto;
 }
-.active{
-    background:#c0c0c0;
+@keyframes activation{
+    from{
+        background:#fff;
+    }
+    50%{
+        background:#c0c0c0;
+    }
+    to{
+        background:#fff;
+    }
 }
 .rangee{
     display:flex;
