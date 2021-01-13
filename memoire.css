@@ -1,17 +1,73 @@
+*{
+}
+@font-face{
+    font-family: 'Potta One';
+    src: url('./polices/PottaOne-Regular.ttf') format('truetype');
+}
 #jeu{
     width:600px;
+    position: absolute;
+    left:50%;
+    top:40%;
+    transform:translate(-50%,-40%);
 }
 .carreau{
-    width:30px;
-    height:30px;
+    width:40px;
+    height:40px;
     background:#fff;
     border-radius:10%;
     display:inline-block;
-    margin-left: 30px;
+    margin:0 auto 0 auto;
+}
+.active{
+    background:#c0c0c0;
 }
 .rangee{
-    width:600px;
+    display:flex;
+    justify-content:space-between;
     height:30px;
     margin:10%;
 }
+#depart{
+    cursor:pointer;
+    background:#449dd1;
+    border:2px dashed white;
+    color:white;
+    font:1.5em 'Potta One';
+    padding:0.5em 1em;
+    position:absolute;
+    bottom:7%;
+    left:50%;
+    transform:translate(-50%, -5%);
+    box-shadow: 0 9px #999;
+    border-radius:15%;
+    outline:none;
+    transition:all 0.5s;
+}
+#depart:active{
+    background:#192bc2;
+    box-shadow: 0 5px #666;
+    transform: translate(-50%, 1%);
+}
 
+#depart span{
+    background:none;
+    display:inline-block;
+    position:relative;
+    transition:0.5s;
+}
+#depart span:after{
+    content: '\00bb';
+    position:absolute;
+    opacity:0;
+    top:0;
+    right: -20px;
+    transition:0.5s;
+}
+#depart:hover span{
+    padding-right:20px;
+}
+#depart:hover span:after{
+    opacity:1;
+    right:0;
+}
