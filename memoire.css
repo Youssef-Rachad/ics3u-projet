@@ -18,15 +18,24 @@
     border-radius:10%;
     display:inline-block;
     margin:0 auto 0 auto;
+    box-shadow: 0 9px #999;
+    border-radius:15%;
+    transform:translateY(0%);
 }
 @keyframes activation{
     from{
+        transform:translateY(0%);
+        box-shadow: 0 9px #999;
         background:#fff;
     }
     50%{
-        background:#c0c0c0;
+        transform:translateY(10%);
+        box-shadow: 0 5px #999;
+        background:hsl(10, 100%, 80%);
     }
     to{
+        transform;translateY(0%);
+        box-shadow: 0 9px #999;
         background:#fff;
     }
 }
@@ -36,35 +45,30 @@
     height:30px;
     margin:10%;
 }
-#depart{
+.btn-declenche{
     cursor:pointer;
     background:#449dd1;
     border:2px dashed white;
     color:white;
     font:1.5em 'Potta One';
     padding:0.5em 1em;
-    position:absolute;
-    bottom:7%;
-    left:50%;
-    transform:translate(-50%, -5%);
     box-shadow: 0 9px #999;
     border-radius:15%;
     outline:none;
     transition:all 0.5s;
 }
-#depart:active{
-    background:#192bc2;
+.btn-declenche:active{
+    background:#26729E;
     box-shadow: 0 5px #666;
-    transform: translate(-50%, 1%);
 }
 
-#depart span{
+#btn-depart span{
     background:none;
     display:inline-block;
     position:relative;
     transition:0.5s;
 }
-#depart span:after{
+#btn-depart span:after{
     content: '\00bb';
     position:absolute;
     opacity:0;
@@ -72,10 +76,155 @@
     right: -20px;
     transition:0.5s;
 }
-#depart:hover span{
+#btn-depart:hover span{
     padding-right:20px;
 }
-#depart:hover span:after{
+#btn-depart:hover span:after{
     opacity:1;
     right:0;
 }
+#btn-depart{
+    position:absolute;
+    bottom:7%;
+    left:50%;
+    transform:translate(-50%, -5%);
+}
+#btn-depart:active{
+    transform: translate(-50%, 1%);
+}
+#btn-go span{
+    background:none;
+    display:inline-block;
+    position:relative;
+    transition:0.5s;
+}
+#btn-go span:after{
+    content: '\00bb';
+    position:absolute;
+    opacity:0;
+    top:0;
+    right: -30px;
+    transition:0.5s;
+}
+#btn-go:hover span{
+    padding-right:30px;
+}
+#btn-go:hover span:after{
+    opacity:1;
+    right:0;
+}
+#btn-plus, #btn-moins{
+    cursor:pointer;
+    border:2px dashed white;
+    color:white;
+    font:1em 'Potta One';
+    height:55px;
+    width:15%;
+    border-radius:15%;
+    line-height:0.5em;
+    outline:none;
+    transition:all 0.5s;
+    margin:0 5%;
+    box-shadow: 0 5px #999;
+    transform:translateY(0%);
+    transition:all 0.5s;
+}
+#btn-plus:active, #btn-moins:active{
+    animation:petite-activation 0.5s 1;
+}
+#btn-moins{
+    background:#f2161c;
+}
+#btn-plus{
+    background:#8fc035;
+}
+@keyframes petite-activation{
+    from{
+        transform:translateY(0%);
+        box-shadow: 0 5px #999;
+    }
+    50%{
+        transform:translateY(10%);
+        box-shadow: 0 3px #999;
+    }
+    to{
+        transform;translateY(0%);
+        box-shadow: 0 5px #999;
+    }
+}
+.fenetre{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family:"Trebuchet MS";
+    font:1.5em 'Potta One';
+}
+
+.fenetre-contenu{
+    margin: 10% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: fenetre-ouvrir;
+    animation-duration: 1s;
+    background:#26729E;
+    padding: 15px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display:flex;
+    flex-direction:column;
+    user-select:none;
+}
+.fenetre-entete{
+    padding: 15px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.fenetre-corps{
+    padding: 10px 20px;
+    font-size:48px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.fenetre-enpied{
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    align-content:center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size:24px;
+}
+/*
+.btn-fermer{
+color: #ccc;
+font-size: 30px;
+color: #fff;
+}
+
+.btn-fermer:hover, .btn-fermer:focus {
+color: #000;
+cursor: pointer;
+}
+ */
+    @keyframes fenetre-ouvrir{
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    #entree > h1{
+        display:inline-block;
+    }
