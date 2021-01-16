@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="memoire.css">
     </head>
     <body>
+        <header id="theme-entete"><img src="./cerveau-stats.png" alt="STATS"></header>
         <main id="jeu"></main>
         <button id="btn-depart" class="btn-declenche"><span>Départ</span></button>
         <!-- Les FENETRES ARRIVENT -->
@@ -22,6 +23,28 @@
                 </div>
                 <div class="fenetre-enpied">
                     <button id="btn-go" class="btn-declenche"><span>Go</span></button>
+                </div>
+            </div>
+        </section>
+        <section id="reussite" class="fenetre">
+            <div class="fenetre-contenu">
+                <div id="reussite-entete"class="fenetre-entete">
+                </div>
+                <div id="reussite-corps"class="fenetre-corps">
+                </div>
+                <div id="reussite-enpied" class="fenetre-enpied">
+                    <button id="btn-rejouer" class="btn-declenche"><span>Prochain Niveau</span></button>
+                </div>
+            </div>
+        </section>
+        <section id="echec" class="fenetre">
+            <div class="fenetre-contenu">
+                <div id="echec-entete"class="fenetre-entete">
+                </div>
+                <div id="echec-corps"class="fenetre-corps">
+                </div>
+                <div id="echec-enpied" class="fenetre-enpied">
+                    <button id="btn-recommencer" class="btn-declenche"><span>Recommencer</span></button>
                 </div>
             </div>
         </section>

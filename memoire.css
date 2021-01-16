@@ -205,26 +205,23 @@
     border-bottom-right-radius: 5px;
     font-size:24px;
 }
-/*
-.btn-fermer{
-color: #ccc;
-font-size: 30px;
-color: #fff;
+
+@keyframes fenetre-ouvrir {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-.btn-fermer:hover, .btn-fermer:focus {
-color: #000;
-cursor: pointer;
+
+#entree > h1{
+    display:inline-block;
 }
- */
-    @keyframes fenetre-ouvrir{
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-    #entree > h1{
-        display:inline-block;
-    }
+#reussite #echec{
+    display:none;
+}
+#btn-rejouer, #btn-recommencer{
+    border-radius:15px !important;
+}
