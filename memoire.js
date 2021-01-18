@@ -1,5 +1,5 @@
-if(!localStorage.getItem("Meilleur-Score")){
-    localStorage.setItem("Meilleur-Score", 0);
+if(!localStorage.getItem("Meilleurs-Scores")){
+    localStorage.setItem("Meilleurs-Scores", JSON.stringify([{"Score": 0, "Moment": Date.now()},{"Score": 0, "Moment": Date.now()},{"Score": 0, "Moment": Date.now()}]));
 }
 var CouleurAP = ["lightblue", "lightblue", "lightblue", "#45B114", "#ffb703", "#fb8500", "#F40D0D"];
 var entree = document.getElementById("entree");
@@ -11,6 +11,7 @@ var niveau = 1;
 var position = 0;
 var indexes = [];
 var actuel = 1;
+var score;
 //-----MÉCANISME DES TUILES-----\\
 var btnDepart = document.getElementById("btn-depart");
 var btnRejouer = document.getElementById("btn-rejouer");
@@ -28,6 +29,30 @@ function tableauHasard(longueur, grandeur){
     return tableau;
 }
 const modifie_curseur = (curseur) => document.querySelectorAll(".carreau").forEach(element => element.setAttribute("style", "cursor:"+curseur));
+function verifier_score(score){
+    let scores = JSON.parse(localStorage.getItem("Meilleurs-Scores"));
+    if(scores[2].Score <= score){
+        scores[2].Score = score;
+        scores[2].Moment = Date.now();
+        localStorage.setItem("Meilleurs-Scores", JSON.stringify(scores));
+        if(scores[1].Score <= score){
+            scores[2].Score = scores[1].Score;
+            scores[2].Moment = scores[1].Moment;
+            scores[1].Score = score;
+            scores[1].Moment = Date.now();
+            localStorage.setItem("Meilleurs-Scores", JSON.stringify(scores));
+            if(scores[1].Score <= score){
+                scores[2].Score = scores[1].Score;
+                scores[2].Moment = scores[1].Moment;
+                scores[1].Score = scores[0].Score;
+                scores[1].Moment = scores[0].Moment;
+                scores[0].Score = score;
+                scores[0].Moment = Date.now();
+                localStorage.setItem("Meilleurs-Scores", JSON.stringify(scores));
+            }
+        }
+    }
+}
 //-----AU DÉMARRAGE-----\\
 //--//Fonctions\\--\\
 const repete_mot = (mot, compte) => compte > 1? mot + repete_mot(mot, compte-1) : mot;
@@ -62,18 +87,20 @@ document.getElementById("btn-go").addEventListener("click", ()=>{
                 setTimeout(()=>{
                     document.getElementById("echec").style.display = "block";
                     document.getElementById("echec-entete").innerHTML = `<h1>DOMMAGE, VOUS AVEZ PERDU AU NIVEAU ${niveau}</h1>`;
-                    document.getElementById("echec-corps").innerHTML = `<h3>Votre meilleur score est ${localStorage.getItem("Meilleur-Score")}`;
+                    document.getElementById("echec-corps").innerHTML = `<h3>Votre meilleur score est ${JSON.parse(localStorage.getItem("Meilleurs-Scores"))[0].Score}`;
                     niveau = 1;
                     modifie_curseur("default");
                 }, 1100);
                 btnDepart.disabled = false;
                 jouer = false;
             }else{
-                console.log(100 + 10*position);
+                score += 100 + 10*position;
+                verifier_score(score);
                 position++;
                 if(indexes.length == 0){
                     setTimeout(()=>{
-                        console.log(Math.pow(10, niveau-1));
+                        score += Math.pow(10, niveau-1);
+                        verifier_score(score);
                         if(actuel%niveau != 0){
                             document.getElementById("reussite").style.display = "block";
                             document.getElementById("reussite-entete").innerHTML = `<h1>ENCORE UN PEU</h1>`;
@@ -88,12 +115,9 @@ document.getElementById("btn-go").addEventListener("click", ()=>{
                             actuel = 1;
                             document.getElementById("reussite").style.display = "block";
                             document.getElementById("reussite-entete").innerHTML = `<h1>BRAVO VOUS AVEZ RÉUSSI LE NIVEAU ${niveau}</h1>`;
-                            document.getElementById("reussite-corps").innerHTML = `<h3>Votre meilleur score est ${localStorage.getItem("Meilleur-Score")}</h3>`;
+                            document.getElementById("reussite-corps").innerHTML = `<h3>Votre meilleur score est ${JSON.parse(localStorage.getItem("Meilleurs-Scores"))[0].Score}</h3>`;
                             document.getElementById("reussite-enpied").style.display = "block";
                             niveau++;
-                        }
-                        if(parseInt(localStorage.getItem("Meilleur-Score"))<=niveau){
-                            localStorage.setItem("Meilleur-Score", niveau);
                         }
                         modifie_curseur("default");
                     }, 1100);
@@ -108,6 +132,7 @@ document.getElementById("btn-go").addEventListener("click", ()=>{
 
 //-----ÉCOUTEURS D'ÉVÉNEMENTS POUR COMMENCER LE JEU-----\\
 btnDepart.addEventListener("click", ()=>{
+    score = 0;
     modifie_curseur("not-allowed");
     btnDepart.style.display = "none";
     //for(let i = 0; i<carreaux.length; i++){setTimeout(() => clickBtn(carreaux[i],1000), i * 1000);}
@@ -134,6 +159,7 @@ btnRejouer.addEventListener("click", () => {
 btnRecommencer.addEventListener("click",() => {
     document.getElementById("echec").style.display = "none";
     btnDepart.style.display = "block";
+    document.querySelector(":root").style.background = CouleurAP[niveau%7];
 });
 window.addEventListener("beforeunload", (e) =>{
     e.preventDefault();
