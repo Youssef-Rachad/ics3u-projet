@@ -1,9 +1,5 @@
 *{
 }
-@font-face{
-    font-family: 'Potta One';
-    src: url('./polices/PottaOne-Regular.ttf') format('truetype');
-}
 #jeu{
     width:600px;
     position: absolute;
@@ -11,7 +7,7 @@
     top:40%;
     transform:translate(-50%,-40%);
 }
-.carreau{
+.tuile{
     width:40px;
     height:40px;
     background:#fff;
@@ -219,8 +215,11 @@
 #entree > h1{
     display:inline-block;
 }
-#reussite #echec{
+#reussite, #echec{
     display:none;
+}
+#echec>div{
+    background:#e63946;
 }
 #btn-rejouer, #btn-recommencer{
     border-radius:15px !important;

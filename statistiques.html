@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vos Stats</title>
+        <link rel="stylesheet" href="theme.css">
+        <link rel="stylesheet" href="statistiques.css">
+    </head>
+    <body>
+        <nav id="theme-entete">
+            <a href="index.html">
+                <img src="./Accueil.png" alt="ACCUEIL">
+            </a>
+            <a href="statistiques.html">
+                <img src="./cerveau-stats.png" alt="STATS">
+            </a>
+            <a href="apropos.html">
+                <img src="./apropos.png" alt="INFORMATION">
+            </a>
+        </nav>
+        <header>
+            <h1>Vos PUISSANCES cérébrales!!!</h1>
+            <h3>Kowalski, analyses! >></h3>
+        </header>
+        <main>
+            <section id="scores">
+                <div>Ton meilleur score est: <span id="meilleur-score-1-score"></span><br>
+                    Obtenu le: <span id="meilleur-score-1-date"></span></div>
+                <div>Ton 2e meilleur score est: <span id="meilleur-score-2-score"></span><br>
+                    Obtenu le: <span id="meilleur-score-2-date"></span></div>
+                <div>Ton 3e meilleur score est: <span id="meilleur-score-3-score"></span><br>
+                    Obtenu le: <span id="meilleur-score-3-date"></span></div>
+            </section>
+            <section id="graph">
+                <div id="diagrammes">
+                    <div class="bande" id="bande-1"><span id="bande-1-span"></span></div>
+                    <div class="bande" id="bande-2"><span id="bande-2-span"></span></div>
+                    <div class="bande" id="bande-3"><span id="bande-3-span"></span></div>
+                </div>
+                <div id="etiquettes">
+                    <div class="etiquette">#1</div>
+                    <div class="etiquette">#2</div>
+                    <div class="etiquette">#3</div>
+                </div>
+            </section>
+        </main>
+        <script src="statistiques.js"></script>
+    </body>
+</html>
