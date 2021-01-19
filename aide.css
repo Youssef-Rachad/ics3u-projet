@@ -1,0 +1,48 @@
+#titre{
+    font: 4em "Potta One";
+    color:#e63946;
+    text-align: center;
+    margin-top:2.5%;
+}
+.page{
+
+    background:#f1faee;
+    width:60%;
+    margin:5% auto 0;
+    border-radius:10px;
+}
+.page h2{
+    font: 2em "Potta One";
+    color:#f1faee;
+    background:#e63946;
+    padding:0 1% 0 1%;
+    border-radius: 10px;
+}
+.page img{
+    height:300px;
+    display:block;
+    margin:0 auto;
+    padding:10px 0 10px;
+}
+.page p{
+    font: 1.25em "Trebuchet MS";
+    color:#1d3557;
+    padding:0 1% 1% 1%;
+}
+#bouttons-aide{
+    display:block;
+    margin:0 auto;
+    width: 150px;
+}
+#bouttons-aide button{
+    margin:5% 5%;
+    padding:0 10%;
+    font: 3em "Trebuchet MS";
+    cursor:pointer;
+    background:#449dd1;
+    border:2px dashed white;
+    color:white;
+    font:1.5em 'Potta One';
+    border-radius:15%;
+    outline:none;
+}
