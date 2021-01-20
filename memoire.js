@@ -2,6 +2,7 @@
 if(!localStorage.getItem("Meilleurs-Scores")){
     localStorage.setItem("Meilleurs-Scores", JSON.stringify([{"Score": 0, "Moment": Date.now()},{"Score": 0, "Moment": Date.now()},{"Score": 0, "Moment": Date.now()}]));
 }
+//Mettre à jour le score par comparaison\\
 function verifier_score(score){
     let scores = JSON.parse(localStorage.getItem("Meilleurs-Scores"));
     if(scores[0].Score < score){
@@ -69,8 +70,10 @@ function clickBtn(boutton, delai){
 //-----ALGORITHMES DE HASARD-----\\
 //Algorithme de hasard, maximum exclusif & minimum inclusif
 const nbrHasard = (min, max) => Math.floor(Math.random() * (max - min) + min);
+//Crée la séquence
 function tableauHasard(longueur, grandeur){
     let tableau = [];
+    //on doit retrancher 1 de grandeur^2 car le tableau commence à 0
     for(let i = 0; i<longueur; i++){tableau.push(nbrHasard(0, grandeur*grandeur-1));}
     return tableau;
 }
@@ -104,6 +107,7 @@ document.getElementById("btn-go").addEventListener("click", ()=>{
             if(tuiles.indexOf(e.target) != boutonsDeJeu.shift()){
                 verifier_score(score);
                 setTimeout(()=>{
+                    //Écran d'échec
                     document.getElementById("echec").style.display = "block";
                     document.getElementById("echec-entete").innerHTML = `<h1>DOMMAGE, VOUS AVEZ PERDU AU NIVEAU ${niveau}</h1>`;
                     document.getElementById("echec-corps").innerHTML = `<h3>Votre meilleur score est ${JSON.parse(localStorage.getItem("Meilleurs-Scores"))[0].Score}`;
@@ -113,15 +117,16 @@ document.getElementById("btn-go").addEventListener("click", ()=>{
                 btnDepart.disabled = false;
                 jouer = false;
             }else{
-                score += 100 + 10*position;
+                score += nbrHasard(85, 126) + 10*position;
                 position++;
                 if(boutonsDeJeu.length == 0){
                     setTimeout(()=>{
                         score += Math.pow(10, niveau-1);
                         verifier_score(score);
                         if(actuel%niveau != 0){
+                            //Écran fin de ronde
                             document.getElementById("reussite").style.display = "block";
-                            document.getElementById("reussite-entete").innerHTML = `<h1>ENCORE UN PEU</h1>`;
+                            document.getElementById("reussite-entete").innerHTML = `<h1>ENCORE UN PEU<br>Votre score est ${score}</h1>`;
                             document.getElementById("reussite-corps").innerHTML = ``;
                             document.getElementById("reussite-enpied").style.display = "none";
                             setTimeout(()=>{
@@ -130,10 +135,11 @@ document.getElementById("btn-go").addEventListener("click", ()=>{
                             }, 1750);
                             actuel++;
                         }else{
+                            //Écran de réussite de niveau
                             actuel = 1;
                             document.getElementById("reussite").style.display = "block";
                             document.getElementById("reussite-entete").innerHTML = `<h1>BRAVO VOUS AVEZ RÉUSSI LE NIVEAU ${niveau}</h1>`;
-                            document.getElementById("reussite-corps").innerHTML = `<h3>Votre meilleur score est ${JSON.parse(localStorage.getItem("Meilleurs-Scores"))[0].Score}</h3>`;
+                            document.getElementById("reussite-corps").innerHTML = `<h3>Votre score est ${score}<br>Votre meilleur score est ${JSON.parse(localStorage.getItem("Meilleurs-Scores"))[0].Score}</h3>`;
                             document.getElementById("reussite-enpied").style.display = "block";
                             niveau++;
                         }
@@ -153,8 +159,10 @@ btnDepart.addEventListener("click", ()=>{
     score = 0;
     modifie_curseur("not-allowed");
     btnDepart.style.display = "none";
+    //Fait clignoter tous les boutons en ordre
     //for(let i = 0; i<tuiles.length; i++){setTimeout(() => clickBtn(tuiles[i],1000), i * 1000);}
     boutonsDeJeu = tableauHasard(niveau+2, parseInt(nombre.innerText));
+    //Fait clignoter tous les boutons selon l'ordre de la séquence
     for(let i = 0; i < boutonsDeJeu.length; i++){setTimeout(() => clickBtn(tuiles[boutonsDeJeu[i]], 1000), i * 1100);}
     setTimeout(() =>{
         jouer = true; 
@@ -175,6 +183,7 @@ btnDepart.addEventListener("click", ()=>{
  **/
 btnContinuer.addEventListener("click", () => {
     modifie_curseur("not-allowed");
+    //CouleurAP est le tableau qui contient tous les arriéres plans
     document.querySelector(":root").style.background = CouleurAP[niveau%7];
     document.getElementById("reussite").style.display = "none";
     boutonsDeJeu = tableauHasard(niveau+2, parseInt(nombre.innerText));

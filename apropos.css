@@ -1,9 +1,11 @@
+/*le grand titre de la page*/
 h1{
     font: 4em "Potta One";
     color:#e63946;
     text-align: center;
     margin-top:2.5%;
 }
+/*tous les section sont formattées pareillement*/
 section{
     background:#f1faee;
     width:60%;

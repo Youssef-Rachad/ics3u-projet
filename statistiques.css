@@ -1,3 +1,4 @@
+/*ajuster la taille selon l'écran*/
 @media(max-width : 600px){
     html{
         font-size:8px;
@@ -14,6 +15,7 @@
         margin:2em auto 0;
     }
 }
+/*Grand titre*/
 header{
     font-family:"Potta One";
     width:90%;
@@ -27,6 +29,7 @@ header h1{
 header h3{
     font-size:1.75rem;
 }
+/*contenu principal*/
 main{
     display:flex;
     width:95%;
@@ -43,6 +46,7 @@ main{
 #scores div{
     margin-bottom:1em;
 }
+/*graphique à bandes*/
 #graph{
     display:flex;
     flex-direction:column;

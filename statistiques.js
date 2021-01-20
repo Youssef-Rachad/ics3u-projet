@@ -5,6 +5,7 @@ var hauteur = 250;
 document.getElementById("meilleur-score-1-score").innerText = scores[0].Score;
 document.getElementById("meilleur-score-2-score").innerText = scores[1].Score;
 document.getElementById("meilleur-score-3-score").innerText = scores[2].Score;
+//slice enlève les derniers 8 huits caractères qui contiennent les secondes
 document.getElementById("meilleur-score-1-date").innerText = new Date(scores[0].Moment).toLocaleString().slice(0,-8);
 document.getElementById("meilleur-score-2-date").innerText = new Date(scores[1].Moment).toLocaleString().slice(0,-8);
 document.getElementById("meilleur-score-3-date").innerText = new Date(scores[2].Moment).toLocaleString().slice(0,-8);

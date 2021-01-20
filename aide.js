@@ -1,3 +1,4 @@
+//Informations du tutoriel
 var contenu = [
     {
         "pos":0, 
@@ -17,10 +18,15 @@ var contenu = [
         "p":"N'oubliez pas de visiter la page à-propos qui indique quelques infos sur le site. <br> Vous y trouverez aussi mes contacts incluant mon <a href='https://github.com/Youssef-Rachad/ics3u-projet'>répertoire GitHub</a>"
     }
 ];
+//position du tutoriel
 var position;
+//entete de l'étape 
 var titre = document.getElementById("page-titre");
+//l'image qui explique l'étape
 var image = document.getElementById("page-image");
+//le texte explicatif
 var texte = document.getElementById("page-texte");
+//on affiche la premiere fiche au départ
 window.addEventListener("load",()=>{
     position = 0;
     titre.innerHTML = String(contenu[position].h2);
@@ -28,6 +34,7 @@ window.addEventListener("load",()=>{
     image.alt = String(contenu[position].alt);
     texte.innerHTML = String(contenu[position].p);
 });
+//ce bouton fait avancer le joueur dans le tutoriel
 document.getElementById("boutton-avance").addEventListener("click", ()=>{
     position = parseInt((position + 1)%4);
     titre.innerHTML = String(contenu[position].h2);
@@ -36,6 +43,7 @@ document.getElementById("boutton-avance").addEventListener("click", ()=>{
     texte.innerHTML = String(contenu[position].p);
 
 });
+//ce bouton fait reculer le joueur dans le tutoriel
 document.getElementById("boutton-recule").addEventListener("click", (e)=>{
     position = parseInt(position - 1)<=0?0:parseInt(position - 1);
     titre.innerHTML = String(contenu[position].h2);
